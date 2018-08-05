@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="InsuranceCalculator" targetNamespace="http://InsuranceCalculatorService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://InsuranceCalculatorService" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://InsuranceCalculatorService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://schemas.datacontract.org/2004/07/WcfServiceHost.InsuranceCalculatorService"/>
+			<xs:element name="CalculatePrice">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="request" nillable="true" type="q1:InsuranceRequest" xmlns:q1="http://schemas.datacontract.org/2004/07/WcfServiceHost.InsuranceCalculatorService"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CalculatePriceResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CalculatePriceResult" nillable="true" type="q2:InsuranceOffer" xmlns:q2="http://schemas.datacontract.org/2004/07/WcfServiceHost.InsuranceCalculatorService"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+			<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+			<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+			<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+			<xs:element name="byte" nillable="true" type="xs:byte"/>
+			<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+			<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+			<xs:element name="double" nillable="true" type="xs:double"/>
+			<xs:element name="float" nillable="true" type="xs:float"/>
+			<xs:element name="int" nillable="true" type="xs:int"/>
+			<xs:element name="long" nillable="true" type="xs:long"/>
+			<xs:element name="QName" nillable="true" type="xs:QName"/>
+			<xs:element name="short" nillable="true" type="xs:short"/>
+			<xs:element name="string" nillable="true" type="xs:string"/>
+			<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+			<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+			<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+			<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+			<xs:element name="char" nillable="true" type="tns:char"/>
+			<xs:simpleType name="char">
+				<xs:restriction base="xs:int"/>
+			</xs:simpleType>
+			<xs:element name="duration" nillable="true" type="tns:duration"/>
+			<xs:simpleType name="duration">
+				<xs:restriction base="xs:duration">
+					<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+					<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+					<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="guid" nillable="true" type="tns:guid"/>
+			<xs:simpleType name="guid">
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:attribute name="FactoryType" type="xs:QName"/>
+			<xs:attribute name="Id" type="xs:ID"/>
+			<xs:attribute name="Ref" type="xs:IDREF"/>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfServiceHost.InsuranceCalculatorService" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/WcfServiceHost.InsuranceCalculatorService">
+			<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+			<xs:complexType name="InsuranceRequest">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Insurant" nillable="true" type="tns:Person"/>
+					<xs:element minOccurs="0" name="Product" nillable="true" type="tns:PhysicalDamageInsurance"/>
+					<xs:element minOccurs="0" name="VehicleData" nillable="true" type="tns:VehicleData"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="InsuranceRequest" nillable="true" type="tns:InsuranceRequest"/>
+			<xs:complexType name="Person">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Address" nillable="true" type="tns:Address"/>
+					<xs:element minOccurs="0" name="DateOfBirth" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Gender" type="tns:enGender"/>
+					<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Occupation" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Telephone" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Person" nillable="true" type="tns:Person"/>
+			<xs:complexType name="Address">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="City" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="HouseNo" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="Street" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Address" nillable="true" type="tns:Address"/>
+			<xs:simpleType name="enGender">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Male"/>
+					<xs:enumeration value="Female"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="enGender" nillable="true" type="tns:enGender"/>
+			<xs:complexType name="PhysicalDamageInsurance">
+				<xs:complexContent mixed="false">
+					<xs:extension base="tns:ThirdPartyRisk">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="DamageInsurance" type="tns:enCoverage"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:element name="PhysicalDamageInsurance" nillable="true" type="tns:PhysicalDamageInsurance"/>
+			<xs:complexType name="ThirdPartyRisk">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="DefenseInsurance" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="EuroProtection" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="InsuranceSum" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="MeritRating" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="PaymentOption" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="PreferedStartDate" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ThirdPartyRisk" nillable="true" type="tns:ThirdPartyRisk"/>
+			<xs:simpleType name="enCoverage">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="ComprehensiveCover"/>
+					<xs:enumeration value="PartialComprehensiveCover"/>
+					<xs:enumeration value="NoComprehensiveCover"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="enCoverage" nillable="true" type="tns:enCoverage"/>
+			<xs:complexType name="VehicleData">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="LicensePlateNumber" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="ListPrice" type="xs:double"/>
+					<xs:element minOccurs="0" name="Make" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="MilagePerYear" type="xs:int"/>
+					<xs:element minOccurs="0" name="NumberOfSeats" type="xs:int"/>
+					<xs:element minOccurs="0" name="Performance" type="xs:int"/>
+					<xs:element minOccurs="0" name="TypeOfFuel" type="tns:enTypeOfFuel"/>
+					<xs:element minOccurs="0" name="TypeOfVehicle" type="tns:enTypeOfVehicle"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="VehicleData" nillable="true" type="tns:VehicleData"/>
+			<xs:simpleType name="enTypeOfFuel">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Petrol"/>
+					<xs:enumeration value="Diesel"/>
+					<xs:enumeration value="ElectricPower"/>
+					<xs:enumeration value="Gas"/>
+					<xs:enumeration value="Other"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="enTypeOfFuel" nillable="true" type="tns:enTypeOfFuel"/>
+			<xs:simpleType name="enTypeOfVehicle">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Automobile"/>
+					<xs:enumeration value="Motorcycle"/>
+					<xs:enumeration value="TruckUnter1t"/>
+					<xs:enumeration value="TruckOver1t"/>
+					<xs:enumeration value="SemiTrailer"/>
+					<xs:enumeration value="Trailer"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="enTypeOfVehicle" nillable="true" type="tns:enTypeOfVehicle"/>
+			<xs:complexType name="InsuranceOffer">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="InsurantName" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="MeritRating" nillable="true" type="xs:string"/>
+					<xs:element minOccurs="0" name="YearlyAmount" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="InsuranceOffer" nillable="true" type="tns:InsuranceOffer"/>
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+			<xs:complexType name="ArrayOfstring">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="IInsuranceCalculator_CalculatePrice_InputMessage">
+		<wsdl:part name="parameters" element="tns:CalculatePrice"/>
+	</wsdl:message>
+	<wsdl:message name="IInsuranceCalculator_CalculatePrice_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CalculatePriceResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="IInsuranceCalculator">
+		<wsdl:operation name="CalculatePrice">
+			<wsdl:input wsam:Action="http://InsuranceCalculatorService/IInsuranceCalculator/CalculatePrice" message="tns:IInsuranceCalculator_CalculatePrice_InputMessage"/>
+			<wsdl:output wsam:Action="http://InsuranceCalculatorService/IInsuranceCalculator/CalculatePriceResponse" message="tns:IInsuranceCalculator_CalculatePrice_OutputMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_IInsuranceCalculator" type="tns:IInsuranceCalculator">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CalculatePrice">
+			<soap:operation soapAction="http://InsuranceCalculatorService/IInsuranceCalculator/CalculatePrice" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="InsuranceCalculator">
+		<wsdl:port name="BasicHttpBinding_IInsuranceCalculator" binding="tns:BasicHttpBinding_IInsuranceCalculator">
+			<soap:address location="http://localhost:9080/InsuranceCalculatorService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
