@@ -10,7 +10,7 @@ Feature:
     
     Then Seat displayed is 1-9
     
-    And Fule Type is Petrol, Diesel and Electric Power
+    And Fule Type is Petrol, Diesel and Electric Power and other
     
     
     
